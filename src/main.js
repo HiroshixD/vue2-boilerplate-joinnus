@@ -5,9 +5,13 @@ import App from './App'
 import router from './router'
 import jquery from 'jquery'
 import materialize from 'materialize'
+
 require('./app.css')
-require('./app.js')
 require('./assets/materialize/css/materialize.min.css')
+require('./assets/css/animate.css')
+require('./assets/css/nomaterialize-input.css')
+require('./assets/css/style.css')
+require('./assets/css/font-awesome/css/font-awesome.min.css')
 
 Vue.config.productionTip = false
 

@@ -1,4 +1,3 @@
-
 <template>
   <div id="app">
     <img src="./assets/logo.png" id="test">
@@ -7,3 +6,9 @@
   </div>
 </template>
 
+
+<script type="text/javascript">
+  export default {
+    name: 'app'
+  }
+</script>
