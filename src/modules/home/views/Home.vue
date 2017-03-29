@@ -1,8 +1,7 @@
 
-<script type="text/javascript" src="../scripts/home.js"></script>
-
+<script type="text/javascript" src="../components/home-component.js"></script>
 <template>
-  <div class="hello">
+  <div>
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
     <ul>

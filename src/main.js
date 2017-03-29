@@ -3,10 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import jquery from 'jquery'
-import materialize from 'materialize'
 
-require('./app.css')
 require('./assets/materialize/css/materialize.min.css')
 require('./assets/css/animate.css')
 require('./assets/css/nomaterialize-input.css')
@@ -23,8 +20,3 @@ new Vue({
   components: { App }
 })
 
-var $ = jquery
-console.log(materialize)
-$('#hola').click(function () {
-  alert('hola')
-})
