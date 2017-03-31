@@ -5,10 +5,6 @@
 <template>
 
 	<div class="principal" v-show="body">
-<form action="" method="Post" id="paymentStripeForm">
-	
-</form>	
-
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col l12 s12 header">

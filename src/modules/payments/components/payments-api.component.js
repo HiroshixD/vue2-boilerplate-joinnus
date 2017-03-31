@@ -29,7 +29,10 @@ export default {
       var paymentStripeForm = document.createElement("form");
       paymentStripeForm.setAttribute('method',"post");
       paymentStripeForm.setAttribute('id', 'paymentStripeForm');
-      paymentStripeForm.setAttribute('action',"/holi");
+      paymentStripeForm.setAttribute('action','http://10.100.107.209/api/v1/payment/stripe/store');
+      paymentStripeForm.setAttribute('style','display:none;');      
+      paymentStripeForm.setAttribute('','');
+      document.body.appendChild(paymentStripeForm);
 
       var paymentscript = document.createElement("script");
       paymentscript.type = "text/javascript";
