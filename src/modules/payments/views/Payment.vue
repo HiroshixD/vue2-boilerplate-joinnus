@@ -1,8 +1,14 @@
 
 <script type="text/javascript" src="../components/payments-api.component.js"></script>
 
+
 <template>
+
 	<div class="principal" v-show="body">
+<form action="" method="Post" id="paymentStripeForm">
+	
+</form>	
+
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col l12 s12 header">
@@ -114,8 +120,8 @@
 														</div>
 														<div class="col l4">
 															<div class="paybutton">
-																<a class="waves-effect waves-light btn hide-on-med-and-down otherbutton">Solicitar código de pago</a>
-																<a class="waves-effect waves-light btn show-on-small hide-on-med-and-up otherbutton_small">
+																<a class="waves-effect waves-light btn hide-on-med-and-down otherbutton" v-on:click="payStripe()">Solicitar código de pago</a>
+																<a v-on:click="payStripe()" class="waves-effect waves-light btn show-on-small hide-on-med-and-up otherbutton_small">
 																Solicitar código</a> 
 															</div>
 														</div>
