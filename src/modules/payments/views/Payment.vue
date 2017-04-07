@@ -4,7 +4,7 @@
 
 <template>
 
-	<div class="principal" v-show="body">
+	<div class="principal" v-show="body"> 
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col l12 s12 header">
@@ -45,17 +45,17 @@
 								<img src="../../../assets/images/party.png">
 							</div>
 						</div>
-						<div class="col l8 s6" style="height: 100px">
+						<div class="col l8 s6" style="height: 100px" v-if="data.name">
 							<div class="title">
-								LINKINPARK EN CONCIERTO
+								{{ data.name }}
 							</div>
 							<div class="details">
 								<i class="material-icons" style="font-size: 15.5px;">perm_contact_calendar</i> Miércoles 18 de noviembre a las 18:00
 							</div>
 
-							<div class="address">
+							<div class="address" v-if="data.locales.address">
 								<i class="material-icons" style="font-size: 15.5px;"> location_on</i>
-							Calle Basadre 3456, San isidro.
+							{{ data.locales.address }}
 							</div>
 						</div>
 
@@ -66,7 +66,8 @@
 										<div class="collapsible-header payments"><i class="material-icons">verified_user</i>Elige tu método de pago
 										</div>
 										<div class="collapsible-body">
-											<div class="section">
+
+											<div class="section" id="payu" v-show="payments.payu">
 												<div class="row">
 													<div class="col l12">
 														<div class="col l3 imgpayment">
@@ -77,26 +78,28 @@
 															<h6 class="paymentadvice">¡El cobro se realizará en dólares!</h6>
 														</div>
 														<div class="col l4">
-															<div class="stripebutton">
-																<a class="waves-effect waves-light btn stripebutton" id="stripeButton">Pagar con tarjeta</a> 
+															<div class="paymentbutton">
+																<a class="waves-effect waves-light btn paymentbutton" id="stripeButton">Pagar</a> 
 															</div>
 														</div>
 													</div>
 												</div>
 											</div>
+
 											<div class="divider"></div>
-											<div class="section">
+
+											<div class="section" id="pagoefectivo" v-show="payments.pago_efectivo">
 												<div class="row">
 													<div class="col l12">
 														<div class="col l3 imgpayment">
 															<img src="../../../assets/images/dollar.png">
 														</div>
 														<div class="col l5 info">
-															<h5 class="typepayment_efective">Depósito en efectivo</h5>
+															<h5 class="typepayment_card">Depósito en efectivo</h5>
 														</div>
 														<div class="col l4">
 															<div class="paybutton">
-																<a class="waves-effect waves-light btn hide-on-med-and-down efectivebutton">Solicitar código de pago</a>
+																<a class="waves-effect waves-light btn hide-on-med-and-down paymentbutton">Pagar</a>
 																<a class="waves-effect waves-light btn show-on-small hide-on-med-and-up efectivebutton_small">
 																Solicitar código</a>                        
 															</div>
@@ -104,19 +107,21 @@
 													</div>
 												</div>
 											</div>
+
 											<div class="divider"></div>
-											<div class="section">
+
+											<div class="section" id="stripe" v-show="payments.stripe">
 												<div class="row">
 													<div class="col l12">
 														<div class="col l3 imgpayment">
 															<img src="../../../assets/images/tubanco.png">
 														</div>
 														<div class="col l5 info">
-															<h5 class="typepayment_other">Paga en tu banca por internet</h5>
+															<h5 class="typepayment_card">Paga en tu banca por internet</h5>
 														</div>
 														<div class="col l4">
 															<div class="paybutton">
-																<a class="waves-effect waves-light btn hide-on-med-and-down otherbutton" v-on:click="payStripe()">Solicitar código de pago</a>
+																<a class="waves-effect waves-light btn hide-on-med-and-down paymentbutton" id="stripePay">Pagar</a>
 																<a v-on:click="payStripe()" class="waves-effect waves-light btn show-on-small hide-on-med-and-up otherbutton_small">
 																Solicitar código</a> 
 															</div>
@@ -124,6 +129,7 @@
 													</div>
 												</div>
 											</div>
+
 										</div>
 									</li>
 								</ul>
@@ -182,7 +188,7 @@
 											Total
 										</div>   
 										<div class="col l6 totalprice">
-											S/. 200.00
+											S/. {{ total/100 }}.00
 										</div>
 									</div>                                                                                    
 								</div>
@@ -207,7 +213,7 @@
 						Joinnus !
 					</div>
 					<div class="qtyamount">
-						1 entrada(s) (S/.200,00) 
+						1 entrada(s) (S/. {{total/100}}.00) 
 					</div>
 					<div class="contactmail">
 						hpalacios@disolu.com
@@ -220,18 +226,18 @@
 							<div class="row" style="padding-top: 3%">
 								<div class="input-field col s12">
 									<i class="material-icons prefix">credit_card</i>
-									<input id="icon_prefix" type="text" class="validate" >
+									<input id="credit_card" type="text" class="validate" v-model=payuparameters.credit_card>
 									<label for="icon_prefix">Número de tarjeta</label>
 								</div>
 								<div class="input-field col s6">
 									<i class="material-icons prefix">perm_contact_calendar</i>
-									<input id="icon_telephone" type="tel" class="validate">
+									<input id="due_date" type="tel" class="validate" v-model="payuparameters.due_date">
 									<label for="icon_telephone">MM/YY</label>
 								</div>
 								<div class="input-field col s6">
 									<i class="material-icons prefix">lock</i>
-									<input id="icon_telephone" type="tel" class="validate">
-									<label for="icon_telephone">CCV</label>
+									<input id="cvv" type="tel" class="validate" v-model="payuparameters.cvv">
+									<label for="icon_telephone">CVV</label>
 								</div>        
 							</div>
 						</form>
@@ -239,7 +245,7 @@
 				</div>
 			</div>
 			<div class="modal-footer buttonpay">
-				<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Pagar Ahora S/. 500.00</a>
+				<a v-on:click="sendPayuRequest()" class="modal-action modal-close waves-effect waves-green btn-flat">Pagar Ahora S/. {{total/100}}.00</a>
 			</div>
 		</div>
 

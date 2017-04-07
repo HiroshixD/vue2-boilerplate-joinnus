@@ -336,24 +336,24 @@ body::-webkit-scrollbar {
 	}
 
 	.details {
-	    padding-top: 4.8%;
+	    padding-bottom: ;
 	    line-height: 93%;
-	    position: absolute;
-	    top: 16%;
-	    left: 52%;
+	    position: relative;
+	    top: -5%;
+	    text-align: justify;
+	    font-size: 13.9px;
 	}	
 
 	.address {
-	    padding-left: 1.5%;
 	    line-height: 98%;
-		position: absolute;
-	    top: 24%;
-	    left: 52%;	    
+	    position: relative;
+	    top: 8%;
+	    font-size: 13.9px;	    
 	}	
 
 	.imgpayment img {
-	    width: 156px;
-    	padding-left: 6%;	    
+		width: 150px;
+    	margin-left: 26%;
 	}
 
 	h5 {
@@ -518,7 +518,7 @@ body::-webkit-scrollbar {
 	    top: 29%;
 	}
 
-	.stripebutton {
+	.paymentbutton {
 	    position: absolute;
 	    top: 32%;
 	    width: 71%;
@@ -580,52 +580,23 @@ body::-webkit-scrollbar {
 	}
 
 	.typepayment_card {
-	    position: absolute;
-	    top: 44%;
+	    position: relative;
+	    top: 10px;    
 	    font-weight: bold;
-	    left: 22%;
+	    left: -18%;
 	    font-size: 18.5px;
 	}
 
 	.paymentadvice {
-	    top: 49%;
-	    left: 22%;
+	    left: -17%;
+	    position: relative;
 	}
 
-	.typepayment_efective {
-	    top:  63.5%;
-	    left: 22%;
-	}
-
-	.typepayment_other {
-		top: 78.5%;
-	    left: 22%;
-	}
-
-	.stripebutton {
-	    width: 43%;
-	    position: absolute;
-	    left: 31%;
-	    top: 50%;
-	    padding-right: 5%;
-	}
-
-	.efectivebutton {
-	    width: 18.5%;
-	    font-size: 12.7px;
-	    position: absolute;
-	    left: 44.4%;
-	    top: 63.7%;
-	    padding-right: 2%;
-	}
-
-	.otherbutton {
-	    width: 18.5%;
-	    font-size: 12.7px;
-	    position: absolute;
-	    left: 44.4%;
-	    top: 79.5%;
-	    padding-right: 2%;
+	.paymentbutton {
+	    position: relative;
+	    width: 100%;
+	    left: 2%;
+	    top: 11px;
 	}
 
 	.title {
@@ -642,8 +613,8 @@ body::-webkit-scrollbar {
 	}
 
 	.details {
-	    top: 9%;
-	    left: 21%;
+	    top: 15%;
+	    left: -4.5%;
 	    font-size: 16px;
 	}	
 

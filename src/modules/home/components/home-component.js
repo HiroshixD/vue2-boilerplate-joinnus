@@ -8,11 +8,12 @@ export default {
     },    
     methods: {
       	getData() {
-      	  	var horasalida = new Date().getTime()        
+      	  	var horasalida = new Date().getTime()
 		  // GET /someUrl
-		    this.$http.get('http://localhost:8443/api/articles').then(response => {
+		    this.$http.get('http://localhost:3000/api/articles').then(response => {
 		    // get body data
 		    	this.someData = response.body;
+		    	console.log(this.someData)
 
 		  	}, response => {
 		    // error callback

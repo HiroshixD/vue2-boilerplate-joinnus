@@ -3,7 +3,6 @@ import jwt from 'jsonwebtoken'
 export default {
   data () {
     return {
-      data1: 'hola',
       show: false
     }
   },
@@ -13,17 +12,27 @@ export default {
         alert('url inválida')
         window.history.back()
       } else {
-        return this.decryptToken(url)
+        return this.decryptToken(url, 'jnputin')
       }
     },
-    decryptToken (token) {
-      jwt.verify(token, 'I Love Alessia', function (err, decoded) {
-        if (err) {
-          alert('Error en secret')
-          window.history.back()
-        }
-      })
-      return true
+    decryptToken (token, key) {
+      let decoded = {}
+      let errortoken = {}
+      try {
+        decoded = jwt.verify(token, key)
+        decoded['vb'] = true
+        decoded['token_reference'] = token
+        return decoded
+      } catch (err) {
+        errortoken['vb'] = false
+        window.history.back()
+        return errortoken
+      }
+    },
+    encryptData (data, secret) {
+      data.credit_card = data.credit_card.replace(/\s/g, '')
+      var token = jwt.sign(data, secret)
+      return token
     }
   }
 }
